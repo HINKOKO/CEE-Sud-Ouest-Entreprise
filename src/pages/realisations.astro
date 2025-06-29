@@ -1,0 +1,175 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import FlipCard from '../components/FlipCard.astro'
+import '../styles/global.css'
+
+const title="Nos réalisations en ITE sur la Cote Basque"
+const description="Découvrez nos chantiers d'ITE et de rénovation façades, réalisés à Bayonne, Biarritz, Anglet et alentours."
+
+const realisations = [
+  {
+    image: '/images/ehpad.jpg',
+    titre: 'Isolation extérieure et bardage',
+    texte: "Travaux complets d’isolation avec matériaux biosourcés pour confort thermique optimal. Finition avec bardage sobre et élégant pour l'Ehpad de Laressore",
+  },
+  {
+    image: '/images/isolation_hlm_cuyes.jpg',
+    titre: 'Isolation extérieure HLM',
+    texte: "Isolation extérieure et embelissement de l'HLM de Cuyes, confort pour les habitants et un beau geste pour l'environnement.",
+  },
+  {
+    image: '/images/immeuble-apres.jpg',
+    titre: "Ravalement de façade d'immeuble",
+    texte: "Chantier ambitieux, rénovation totale d'un ensemble immobilier",
+  },
+  {
+    image: '/images/ravalement-facade-sorebat.jpg',
+    titre: 'Ravalement de façade',
+    texte: 'Ravalement de façade et traitement anti-humidité pour cette maison basque traditionnelle.',
+  },
+  {
+    image: '/images/renovation-facade_biarritz.jpg',
+    titre: 'Renovation de façade',
+    texte: "Renovation de façade à haute technicité à Biarritz pour ce bien authentique, dont tout le cachet originel s'en trouve restauré !",
+  },
+]
+
+// infos business 
+const business = {
+  name: "CEE Sud-Ouest",
+  streetAddress: "24 boulevard Marcel Dassault",
+  addressLocality: "Biarritz",
+  addressRegion: "Nouvelle Aquitaine",
+  postalCode: "64200",
+  addressCountry: "FR",
+  telephone: "01 23 45 67 89",
+  url: "",
+  openingHours: [
+    { day: "Monday", opens: "08:00", closes: "18:00" },
+    { day: "Tuesday", opens: "08:00", closes: "18:00" },
+    { day: "Wednesday", opens: "08:00", closes: "18:00" },
+    { day: "Thursday", opens: "08:00", closes: "18:00" },
+    { day: "Friday", opens: "08:00", closes: "18:00" },
+  ],
+};
+---
+<BaseLayout {title} {description}>
+    <section class="px-6 md:px-12 py-20 max-w-6xl mx-auto">
+        <h1 style="font-family: ubuntu; font-weight: 700;" class="mb-16 text-center text-4xl">
+          Nos réalisations ITE et ravalements de façades
+        </h1>
+        <article>
+          <p class="text-center leading-relaxed max-w-3xl mx-auto text-gray-700 text-lg md:text-xl mb-20 
+          italic relative 
+          before:content-[''] before:absolute before:-left-4 before:top-0 
+          before:w-1 before:h-full before:bg-gradient-to-b before:from-amber-500 before:to-blue-500 before:rounded-full
+          pl-8 py-4" style="font-family: Ubuntu; font-weight: 200;">
+          Nous sommes fiers de vous présenter ici un petit aperçu de notre panel de chantiers ITE et de rénovations de façades : maisons individuelles, complexes immobiliers, EHPAD, logements sociaux… <br> 
+          Du Pays Basque &#127798; à la côte Atlantique &#127754; , nous embellissons les constructions du pays avec passion et savoir-faire&nbsp;!
+        </p>
+      </article>
+        <div class="space-y-16">
+            {realisations.map((item, index) => (
+                <div class={`flex flex-col md:flex-row ${index % 2 == 0 ? 'md:flex-row-reverse' : ''} items-center gap-8`}>
+                    <img 
+                        src={item.image} alt={item.titre}
+                        class="w-full md:w-1/2 rounded-xl shadow-lg"
+                        loading="lazy"
+                    />
+                    <div class="w-full :md:w-1/2 space-y-4">
+                        <h2 class="text-2xl font-semibold text-amber-600">{item.titre}</h2>
+                        <p class="text-gray-700 text-lg">{item.texte}</p>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </section>
+
+    <section class="space-y-16">
+      <FlipCard
+      beforeImg="/images/traitement_decollement_enduit-avant.jpg"
+      afterImg="/images/traitement_decollement_enduit-apres.jpg"
+      titleBefore="Facade abimée, enduit décollé..."
+      textBefore="Une facade dégradée est la porte ouverte aux infiltrations et le prélude à des dégâts plus importants sur votre patrimoine bâti"
+      titleAfter="Une facade comme neuve"
+      textAfter="Rénovation complète qui protège durablement votre patrimoine et redonne tout son éclat à votre façade, votre bien gagne en valeur !"
+      />
+      
+      <FlipCard
+      beforeImg="/images/renovation-facade-avant.jpg"
+      afterImg="/images/renovation-facade-apres.jpg"
+      titleBefore="Facade abimée, enduit décollé..."
+      textBefore="Une facade dégradée est la porte ouverte aux infiltrations et le prélude à des dégâts plus importants sur votre patrimoine bâti"
+      titleAfter="Une facade comme neuve"
+      textAfter="Rénovation complète qui protège durablement votre patrimoine et redonne tout son éclat à votre façade, votre bien gagne en valeur !"
+      />
+    </section>
+
+  <!-- FAQ section -->
+    <section
+      aria-label="Questions fréquentes sur nos travaux"
+      class="mt-20 max-w-3xl mx-auto space-y-6 text-gray-700"
+    >
+      <h2 class="text-2xl font-semibold text-amber-600 mb-6">Questions fréquentes</h2>
+      <!-- faq 1 - matériaux -->
+      <details class="border border-gray-300 rounded-md p-4">
+        <summary class="cursor-pointer font-medium">Quels matériaux utilisez-vous pour l’isolation ?</summary>
+        <p class="mt-2">
+        Isolants en fibres de bois, laine de roche, nous privilégions les matériaux biosourcés, efficaces et respectueux de
+        l’environnement, garantissant un confort thermique optimal.
+      </p>
+      </details>
+      <!-- faq 2 - batiments anciens -->
+      <details class="border border-gray-300 rounded-md p-4">
+        <summary class="cursor-pointer font-medium">Intervenez-vous sur des bâtiments anciens ?</summary>
+        <p class="mt-2">
+          Oui, nous avons une grande expérience en rénovation de bâtiments anciens,
+          notamment dans le Pays Basque.
+        </p>
+      </details>
+      <!-- faq 3 - solutions tailor-sized -->
+      <details class="border border-gray-300 rounded-md p-4">
+      <summary class="cursor-pointer font-medium">Proposez-vous des solutions personnalisées ?</summary>
+      <p class="mt-2">
+        Absolument, chaque chantier est unique, et nous adaptons nos solutions aux
+        besoins spécifiques de nos clients.
+      </p>
+    </details>
+  </section>
+
+  <section class="px-6 md:px-12 py-20 max-w-6xl mx-auto ">
+     <article class="text-center max-w-3xl mx-auto text-gray-700 text-lg md:text-xl mb-20 
+          bg-[#81e98a] p-8 rounded-xl shadow-md 
+          border border-gray-100" 
+             style="font-family: Ubuntu; font-weight: 200;">
+      <p>Notre précédent site Internet ayant subit une <strong>refonte totale</strong>,
+        nous sommes actuellement en train d'inviter nos clients à publier ou republier leur avis sur celui-ci, qui est tout neuf ! 
+        — restez connectés <span class="z-20 relative inline-block hi-word-orange">pour leurs avis !</span></p>
+    </article>
+  </section>
+</BaseLayout>
+
+<!-- JSON-LD LocalBusiness -->
+<script type="application/ld+json" is:inline>
+  {JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": business.name,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": business.streetAddress,
+      "addressLocality": business.addressLocality,
+      "addressRegion": business.addressRegion,
+      "postalCode": business.postalCode,
+      "addressCountry": business.addressCountry
+    },
+    "telephone": business.telephone,
+    "url": business.url,
+    "openingHoursSpecification": business.openingHours.map(day => ({
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": day.day,
+      "opens": day.opens,
+      "closes": day.closes
+    }))
+  })}
+</script>

@@ -1,0 +1,97 @@
+---
+// Pas besoin d'import ici si tu restes simple
+---
+<header
+  x-data="{
+    open: false,
+    lastScroll: 0,
+    visible: true,
+    init() {
+      this.lastScroll = window.scrollY;
+      window.addEventListener('scroll', () => {
+        const current = window.scrollY;
+        if (current < this.lastScroll || current < 5) {
+        setTimeout(() => this.visible = true, 100);
+        } else {
+         this.visible = false;
+        }
+         this.lastScroll = current;
+      });
+    }
+  }"
+  x-show="visible"
+  x.transition:enter="transition ease-out duration-700"
+  x.transition:enter-start="-translate-y-full opacity-0"
+  x.transition:enter-end="translate-y-0 opacity-100"
+  x.transition:leave="transition ease-in duration-500"
+  x.transition:leave-start="translate-y-0 opacity-100"
+  x.transition:leave-end="-translate-y-full opacity-0"
+  class="fixed top-0 left-0 w-full z-50 bg-[#004c75] text-white shadow-lg transform"
+>
+  <!-- Top bar for phone (mobile only) -->
+  <div class="md:hidden bg-amber-500 text-gray-200 text-sm py-1 px-4 text-center shadow-2xl">
+    📞 <a href="tel:+33123456789" class="font-medium no-underline">01 23 45 67 89</a>
+  </div>
+
+  <!-- Top Header -->
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-4 lg:px-8 relative">
+
+    <!-- LEFT part -> Logos & maxima -->
+     <div class="ml-8 md:ml-0 flex items-center space-x-4">
+      <img src="/images/entreprise_no_bg.png" alt="logo_entreprise" class="h-22 md:h-36 w-auto">
+      <img src="/images/RGE.avif" alt="RGE" class="h-12 md:h-18 w-auto">
+      <span class="hidden md:inline text-xl font-medium italic tracking-wider text-white">Notre savoir faire, pour votre
+        <span class="relative inline-block hi-word-yellow">confort</span>
+      </span>
+     </div>
+
+     <!-- RIGHT Part (Phone and CTA to estimation) -->
+     <div class="hidden md:flex items-center space-x-6 text-2xl">
+        📞 <a href="tel:+33123456789" class="ml-2 text-sm md:text-lg font-semibold underline-offset-2 hover:text-amber-500">01 23 45 67 89</a>
+       <a href="/#contact" class="bg-[#ec9c1b] text-white text-center px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-700 transition">Demander un devis</a>
+    </div> 
+
+
+    <!-- Hamburger (mobile only) -->
+    <div class="md:hidden relative z-90">
+      <button @click="open = !open" class="flex flex-col gap-1 w-6 h-6 relative z-50">
+        <span class="w-6 h-1 bg-white block transition-all duration-300"
+          :class="{ 'rotate-45 translate-y-2': open }"></span>
+        <span class="w-6 h-1 bg-white block transition-all duration-300"
+          :class="{ 'opacity-0': open }"></span>
+        <span class="w-6 h-1 bg-white block transition-all duration-300"
+          :class="{ '-rotate-45 -translate-y-2': open }"></span>
+      </button>
+    </div>
+  </div>
+
+     <!-- Desktop nav -->
+    <nav class="hidden md:flex justify-center bg-[#002837] py-2 text-base uppercase tracking-wide space-x-10">
+      <a href="/" class="nav-links">Accueil</a>
+      <a href="/#services" class="nav-links">Services</a>
+      <a href="/realisations" class="nav-links">Réalisations</a>
+      <a href="/contact" class="nav-links">Contact</a>
+    </nav>
+
+    <!--  Overlay en mode Alpine -->
+    <div x-show="open" x-transition.opacity class="fixed inset-0 z-50 flex">
+      <!-- semi-blured background - clickable -->
+      <div 
+        class="absolute inset-0 bg-[#003049]/90 backdrop-blur-sm"
+        @click="open = false">
+      </div>
+
+      <!-- Actual mobile menu -->
+      <nav class="relative z-10 m-auto flex flex-col items-center justify-center space-y-10 text-white text-lg font-semibold"
+          @click.stop
+      > 
+      <a href="/" @click="open = false" class="uppercase tracking-wide">Accueil</a>
+      <a href="#services" @click="open = false" class="uppercase tracking-wide">Services</a>
+      <a href="/realisations" @click="open = false" class="block uppercase tracking-wide">Réalisations</a>
+      <a href="#contact" @click="open = false" class="block uppercase tracking-wide">Contact</a>
+      </nav>
+    </div>
+</header>
+
+<!-- spacer to avoid content beneath header -->
+ <div class="h-[60px] md:h-[140px]"></div>

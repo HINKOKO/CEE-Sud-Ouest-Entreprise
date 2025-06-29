@@ -9,6 +9,13 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.1.8",
+    "alpinejs": "^3.14.9",
     "astro": "^5.8.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.4",
+    "tailwindcss": "^4.1.10"
   }
 }

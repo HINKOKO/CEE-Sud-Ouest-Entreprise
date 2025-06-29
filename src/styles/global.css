@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Hand+Pre:wght@400..700&family=Oswald:wght@200..700&display=swap');
+@import "tailwindcss";
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.hi-word-yellow::before {
+    content: "";
+    position: absolute;
+    left: -0.08em;
+    bottom: 0.0em;
+    width: 115%;
+    height: 1.25em;
+    background: #fcd34d;
+    transform: skewX(-10deg) skewY(-5deg);
+    z-index: -1;
+    border-radius: 0.1em;
+    opacity: 0.9;
+}
+
+.hi-word-green::before {
+    content: "";
+    position: absolute;
+    left: -0.2em;
+    bottom: 0.1em;
+    width: 110%;
+    height: 1.2em;
+    background: #04a019;
+    transform: skewX(-8deg) skewY(-4deg);
+    z-index: -1;
+    border-radius: 0.1em;
+    opacity: 0.8;
+}
+
+.hi-word-orange::before {
+    content: "";
+    position: absolute;
+    left: -0.08em;
+    bottom: 0.0em;
+    width: 115%;
+    height: 1.25em;
+    background: #ff8d30;
+    transform: skewX(-10deg) skewY(-2deg);
+    z-index: -1;
+    border-radius: 0.1em;
+    opacity: 0.9;
+}
+
+.nav-links {
+    position: relative;
+    color: #ffffff;
+    padding-bottom: 0.2rem;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.nav-links::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    width: 100%;
+    height: 2px;
+    background-color: #fcd34d;
+    transition: transform 0.3s ease;
+}
+
+.nav-links:hover::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+.nav-links:hover {
+    color: #fcd34d;
+}
+
+/* Section services on mobile by default (mobile first) */
+.clip-parallelogram-left {
+    clip-path: polygon(0 0 , 100% 0, 100% 89%, 0% 100%);
+}
+
+.clip-parallelogram-center {
+    clip-path: polygon(0 11%, 100% 0, 100% 89%, 0% 100%);
+}
+
+.clip-parallelogram-right {
+    clip-path: polygon(0 11%, 100% 0, 100% 89%, 0% 100%);
+}
+
+
+/* Section services parallelogrammes tablet and > */
+@media (min-width: 768px) {
+    .clip-parallelogram-left {
+        clip-path: polygon(0 0 , 100% 0, 90% 100%, 0% 100%);
+    }
+
+    .clip-parallelogram-center {
+        clip-path: polygon(10% 0 , 100% 0, 90% 100%, 0% 100%);
+    }
+
+    .clip-parallelogram-right {
+        clip-path: polygon(10% 0 , 100% 0, 100% 100%, 0% 100%);
+    }
+}
+
+/* Classes about forms */
+.form-input {
+    @apply w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#003049];
+}
+
+.form-textarea {
+    @apply w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#003049];
+}
+
+
+/* Waves */
+.custom-shape-divider-top-1749305120 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1749305120 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 150px;
+}
+
+.custom-shape-divider-top-1749305120 .shape-fill {
+    fill: #0D3841;
+}
+
+
+/* Carousel (handle mobile swipe) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Cards flips before - after realisations page */
+.perspective {
+  perspective: 800px;
+}
+
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}

@@ -1,16 +1,109 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Realisations from '../components/Realisations.astro'
+import ContactForm from '../components/ContactForm.astro'
+import '../styles/global.css'
 ---
+<!-- background: #E5B457;
+background: linear-gradient(135deg, #E5B457, #D8520A -->
+<BaseLayout>
+	<!-- Hero section //\\ a voir le bg ==> bg-gradient-to-br from-[#ffaff4] to-[#e45f22]-->
+	<section class="flex flex-col justify-between space-y-10 relative px-6 md:px-12 py-10 pt-20 max-w-7xl mx-auto
+					bg-gradient-to-br from-[#E5B457] to-[#D8520A] rounded-xl shadow-xl overflow-hidden top-[-15px]">
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+		<!--  div to organize contents of hero section  -->
+		<div class="flex flex-col md:flex-row pt-16 justify-between items-center gap-16 relative z-10">
+			
+			<!-- left pane : entreprise and prez -->
+			<div class="md:w-1/2 flex flex-col justify-center space-y-10 text-center md:text-left text-[#d2d5f7]">
+				<h1 class="text-4xl md:text-7xl font-bold text-[#d2d5f7]">
+					CEE Sud-Ouest
+				</h1>
+				<h2 class="text-lg md:text-4xl font-semibold text-[#003049] leading-relaxed max-w-3xl mx-auto md:mx-0">
+					Experts en rénovation énergétique certifiés <span class="relative hi-word-yellow">RGE</span>
+				</h2>
+				<p class="text-lg md:text-xl font-medium" style="font-family: Edu VIC WA NT Hand Pre;">
+					<strong>Jacky</strong>, fondateur passionné, +40 ans d'expérience dans la rénovation. Ses  équipes investies et rigoureuses sont au service de la qualité et de la performance énergétique.
+				</p>
+				<div class="bg-[#003049] flex md:ml-8 mt-6 md:mt-10 py-6 px-10 text-base md:text-lg w-full md:max-w-xl mx-auto md:mx-0 shadow-xl rounded-lg">
+					<p class="" >
+						Notre certification <strong>RGE</strong> vous garantit sérieux, expertise et accès aux aides à la rénovation.
+					</p>
+					<img src="/images/RGE.avif" alt="RGE" class="h-12 md:h-18 w-auto" />
+				</div>
+			</div>
+
+			<!-- right pane : portrait and carousel beneath -->
+			<div class="md:w-1/2 flex flex-col items-center md:items-start justify-start">
+				<div class="relative w-full max-w-xl rounded-lg overflow-visible shadow-xl">
+					
+					<!-- carousel img -->
+					<img
+					src="/images/chantier-1.jpeg"
+					class="w-full h-auto md:h-80 object-cover  rounded-lg" 
+					alt="Chantier 2" 
+					/>
+					
+					<!-- Portrait du boss -->
+					<img
+					src="/images/Boss-removebg-preview.png"
+					alt="Portrait du fondateur"
+					class="absolute bg-[#D8520A] -top-10 -left-10 w-30 md:w-42 h-30 md:h-42 object-cover rounded-full
+					shadow-2xl  ring-6 ring-offset-4 ring-black"
+					/>
+				</div>
+			</div>
+
+		</div>
+		<div class="flex max-w-3/4 mx-auto mt-16">
+			<a href="#services" class="px-8 py-5 bg-[#003049] rounded-xl flex mx-auto text-white font-medium text-xl">
+				Nos services
+			</a>
+		</div>
+
+		<!-- waves to remember basque ocean -->
+		<div class="custom-shape-divider-top-1749305120">
+			<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+				<path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+				<path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+				<path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+			</svg>
+		</div>
+	</section>
+
+	<!-- Services section -->
+	<section id="services" class="relative px-6 md:px-12 py-20 bg-[#f8f9fa]">
+	<div class="relative flex flex-col md:flex-row items-stretch max-w-6xl mx-auto">
+		<!-- Bloc central - ITE -->
+		<a href="/isolation-exterieure" class="group relative w-full md:w-1/2 h-64 md:h-96 overflow-hidden clip-parallelogram-left hover:scale-[1.02] transition-transform duration-300">
+			<img src="/images/ite.jpeg" alt="renovation_facade"
+			class="w-full h-full object-cover group-hover:brightness-75 transition duration-300" />
+			<div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition"></div>
+			<div class="absolute bottom-6 left-4 text-white text-2xl font-semibold">Isolation Thermique <br /> Extérieure</div>
+		</a>
+
+		<!-- Bloc gauche - Renovation facades -->
+		<a href="/renovation-facades" class="relative w-full md:w-1/2 h-64 md:h-96 overflow-hidden clip-parallelogram-center hover:scale-[1.02] transition-transform duration-300">
+			<img src="/images/facades.webp" alt="renovation_facade"
+			class="w-full h-full object-cover group-hover:brightness-75 transition duration-300" />
+			<div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition"></div>
+			<div class="absolute bottom-6 left-4 text-white text-2xl font-semibold">Renovation de façades</div>
+		</a>
+
+		<!-- Bloc droit - conseils et audit -->
+		<a href="/audit-energetique" class="group relative w-full  md:w-1/2 h-64 md:h-96 overflow-hidden clip-parallelogram-right hover:scale-[1.02] transition-transform duration-300">
+			<img src="/images/audit.webp" alt="renovation_facade"
+			class="w-full h-full object-cover group-hover:brightness-75 transition duration-300" />
+			<div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition"></div>
+			<div class="absolute bottom-6 left-4 text-white text-2xl font-semibold">Audit et conseil</div>
+		</a>
+	</div>
+	</section>
+
+	<Realisations />
+
+	<ContactForm/>
+	
+</BaseLayout>
+
+

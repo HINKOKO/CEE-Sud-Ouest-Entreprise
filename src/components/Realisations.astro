@@ -1,0 +1,117 @@
+---
+// Realisations.astro
+---
+<section
+  id="realisations"
+  class="bg-[#ff8f9fa] py-24 px-6 md:px-12 text-[#003049]"
+>
+  <div class="max-w-6xl mx-auto space-y-16">
+
+    <!-- CHIFFRES -->
+    <div class="grid md:grid-cols-2 gap-12 text-center text-3xl font-semibold">
+
+      <!-- m² isolés -->
+      <div 
+        x-data="counter(0, 2000, 40, 30)" 
+        x-intersect:enter="startCount()" 
+        x-intersect:leave="resetCount()"
+      >
+        <p class="text-5xl font-bold text-[#e45f22]">
+          + de <span x-text="count"></span>m²
+        </p>
+        <p>Isolés depuis 2020</p>
+      </div>
+
+      <!-- chantiers réalisés -->
+      <div 
+        x-data="counter(0, 67, 2, 30)" 
+        x-intersect:enter="startCount()" 
+        x-intersect:leave="resetCount()"
+      >
+        <p class="text-5xl font-bold text-[#e45f22]">
+          <span x-text="count"></span>
+        </p>
+        <p>chantiers réalisés en 2025</p>
+      </div>
+
+    </div>
+
+    <!-- CAROUSEL -->
+    <div 
+      class="relative w-full overflow-hidden"
+      x-data="{
+        activeSlide: 0,
+        slides: [
+          { src: '/images/chantier-1.jpeg', caption: 'ITE sur maison individuelle à Dax' },
+          { src: '/images/chantier-2.jpeg', caption: 'ITE sur maison individuelle Saint-Jean-de-Luz' },
+          { src: '/images/chantier-3.jpeg', caption: 'ITE sur maison individuelle à Grozny' },
+          { src: '/images/chantier-4.webp', caption: 'ITE sur maison individuelle à Acapulco' }
+        ],
+        goToSlide(index) {
+            this.activeSlide = index;
+            this.$refs.slider.scrollTo({
+            left: this.$refs.slider.clientWidth * index,
+            behavior: 'smooth'
+           });
+        }
+      }"
+    >
+
+      <div 
+        class="flex overflow-x-auto no-scrollbar snap-x snap-mandatory space-x-4 scroll-smooth"
+        x-ref="slider"
+        @scroll.debounce.100ms="activeSlide = Math.round($refs.slider.scrollLeft / $refs.slider.clientWidth)"
+  >
+    <template x-for="(slide, index) in slides" :key="slide.src">
+      <div class="relative min-w-full snap-start md:h-[400px]">
+        <img 
+          :src="slide.src" 
+          :alt="slide.caption" 
+          class="w-full h-full object-cover rounded-xl shadow-lg"
+        />
+        <div class="absolute bottom-4 left-4 bg-white/90 text-[#003049] text-sm md:text-base px-4 py-2 rounded shadow-md">
+          <span x-text="slide.caption"></span>
+        </div>
+      </div>
+    </template>
+  </div>
+
+  <!-- Navigation dots -->
+  <div class="flex justify-center mt-6 space-x-3">
+    <template x-for="(slide, i) in slides" :key="i">
+      <button 
+        class="w-4 h-4 rounded-full"
+        :class="i === activeSlide ? 'bg-[#e45f22]' : 'bg-gray-300'"
+        @click="goToSlide(i)"
+      ></button>
+    </template>
+  </div>
+  </div>
+</section>
+
+<!-- Alpine Counter Helper : À l'extérieur du <section> -->
+<script is:inline>
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('counter', (start, target, step, delay) => ({
+      count: start,
+      interval: null,
+      startCount() {
+        clearInterval(this.interval);
+        this.count = start;
+        this.interval = setInterval(() => {
+          if (this.count < target) {
+            this.count += step;
+          } else {
+            this.count = target;
+            clearInterval(this.interval);
+          }
+        }, delay);
+      },
+      resetCount() {
+        clearInterval(this.interval);
+        this.count = start;
+      }
+    }));
+  });
+</script>
+

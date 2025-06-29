@@ -1,0 +1,162 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+---
+<BaseLayout>
+    <section class="px-6 md:px-12 py-20 max-w-4xl mx-auto">
+
+    <h1 class="text-3xl md:text-5xl font-bold mb-8 text-center">Demander votre devis personnalisé</h1>
+
+    <p class="mb-8 text-center text-lg text-gray-700 max-w-3xl mx-auto">
+        Vous avez un projet de rénovation énergétique ? Jacky et son équipe sont à votre écoute pour vous proposer
+        une solution personnalisé et adaptée à vos besoins.
+        Remplissez le formulaire et recevez un devis clair et sans engagement.
+    </p>
+
+    <div class="text-center mb-12 space-y-2 text-gray-700">
+        <p>Vous préférez parler directement à un expert ?</p>
+        <p class="font-semibold text-amber-600">📞 01.23.45.67.89</p>
+        <p>Du lundi au vendredi, 9h-18h</p>
+    </div>
+
+    <!-- Formulaire contact -->
+    <form action="https://formspree.io/f/myzjoyjd" method="POST" class="space-y-6 bg-white text-center">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+            <input name="nom" type="text" placeholder="Nom complet" required class="form-input" />
+            <input name="email" type="text" placeholder="Addresse mail" required class="form-input" />
+            <input name="telephone" type="tel" placeholder="Numéro de téléphone (facultatif)" class="form-input" />
+
+            <!-- traitement code postal et ville avec Alpine -->
+            <div x-data="postalLookup()" class="relative w-full">
+              <input
+              id="ville"
+              type="text"
+              placeholder="Code postal" 
+              x-model="zipcode"
+              @input.debounce.300ms="fetchCities"
+              class="form-input" 
+              name="code-postal"
+              required
+              />
+
+              <!-- Suggestion en mode dropdown -->
+              <ul
+               x-show="cities.length > 0"
+               x-transition
+               class="absolute z-50 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto"
+              >
+                <template x-for="city in cities" :key="city">
+                  <li
+                   @click="selectCity(city)"
+                   x-text="city"
+                   class="px-4 py-2 hover:bg-amber-100 cursor-pointer"
+                  ></li>
+                </template>
+              </ul>
+
+              <!-- hidden field to send city for form for POST -->
+              <input type="hidden" name="ville" :value="selectedCity" />
+              
+              <!-- message si aucune ville trouvée -->
+              <template x-if="zipcode.length >= 4 && cities.length === 0 && inputCity.length = 0">
+                <p class="text-sm text-gray-500 italic">Aucune ville trouvée pour ce code postal</p>
+              </template>
+            </div>
+        </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <select name="type-logement" required class="form-input">
+              <option value="">Type de logement</option>
+              <option>Maison individuelle</option>
+              <option>Appartement</option>
+              <option>Autre</option>
+          </select>
+          <input
+              min="0"
+              max=""
+              step="1"
+              name="surface"
+              type="number"
+              placeholder="Surface habitable (m²)"
+              class="form-input"
+              x-data
+              x-on:input="
+              if ($el.value > 1000) $el.value = 1000;
+              if ($el.value < 1) $el.value = '';   
+              "
+          />
+      </div>
+
+      <textarea name="message" rows="5" placeholder="Décrivez votre projet en quelques mots" class="form-textarea">
+      </textarea>
+
+      <button type="submit" class="bg-amber-600 text-xl font-semibold px-10 py-4 rounded-2xl text-white ring-2 ring-amber-400 ring-offset-4
+                      transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-105
+                      active:translate-y-0 active:scale-95 active:ring-offset-2">
+          Envoyer ma demande
+      </button>
+      <p class="mt-4 text-sm text-gray-500 italic">
+          Votre demande sera traitée en moins de 72h. Confidentialité garantie.
+      </p>
+  </form>
+
+        <div class="max-w-xl mx-auto mt-12">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1717.3046455795518!2d-1.537057812582309!3d43.47150596589901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd51154c9d6da8d9%3A0x5c912f69a641388e!2s24%20Bd%20Marcel%20Dassault%2C%2064200%20Biarritz!5e1!3m2!1sen!2sfr!4v1751196102184!5m2!1sen!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </iframe>
+    </div>
+
+    <section class="max-w-4xl mx-auto space-y-6 bg-gray-50 rounded-lg p-8 shadow-md mt-12">
+      <h2 class="text-2xl font-semibold mb-6 text-center text-[#d8520a]">Questions fréquentes</h2>
+      <details class="bg-white rounded-md p-4 shadow-sm cursor-pointer">
+        <summary class="font-semibold">Quels types de travaux sont éligibles aux aides ?</summary>
+        <p class="mt-2 text-gray-600 text-sm">
+          Isolation, chauffage performant, ventilation... Nous vous guidons pour maximiser vos aides.
+        </p>
+      </details>
+      <details class="bg-white rounded-md p-4 shadow-sm cursor-pointer">
+        <summary class="font-semibold">Combien de temps prend une rénovation ?</summary>
+        <p class="mt-2 text-gray-600 text-sm">
+          Cela dépend de la nature des travaux, comptez généralement entre 2 semaines et 2 mois.
+        </p>
+      </details>
+      <details class="bg-white rounded-md p-4 shadow-sm cursor-pointer">
+        <summary class="font-semibold">Comment bénéficier de la certification RGE ?</summary>
+        <p class="mt-2 text-gray-600 text-sm">
+          Jacky et son équipe sont certifiés RGE, ce qui vous permet d’accéder aux primes et subventions.
+        </p>
+      </details>
+    </section>
+  </section>
+</BaseLayout>
+
+
+<script is:inline>
+  inputCity = document.getElementById('ville');
+
+  function postalLookup() {
+    return {
+      zipcode: '',
+      cities: [],
+      selectedCity: '',
+      async fetchCities() {
+        if (this.zipcode.length < 5) {
+          this.cities = [];
+          return;
+        }
+        try {
+          const response = await fetch(`https://geo.api.gouv.fr/communes?codePostal=${this.zipcode}&fields=nom&format=json`);
+          const data = await response.json();
+          this.cities = data.map(commune => commune.nom);
+        } catch (error) {
+          console.error("Erreur recupération ville(s): ", error);
+          this.cities = [];
+        }
+      },
+      selectCity(city) {
+        inputCity.value = city;
+        this.selectedCity = city;
+        this.cities = []; // hide the list after choice is made
+      }
+    }
+  }
+</script>
