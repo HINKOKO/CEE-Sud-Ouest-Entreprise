@@ -20,7 +20,9 @@ const formSpreeID = import.meta.env.PUBLIC_FORMSPREE_ID
     </div>
 
     <!-- Formulaire contact -->
-    <form action=`https://formspree.io/f/${formSpreeID}` method="POST" class="space-y-6 bg-white text-center">
+    <form action={`https://formspree.io/f/${formSpreeID}`}
+          method="POST"
+          class="space-y-6 bg-white text-center">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
             <input name="nom" type="text" placeholder="Nom complet" required class="form-input" />
             <input name="email" type="text" placeholder="Addresse mail" required class="form-input" />

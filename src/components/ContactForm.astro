@@ -1,6 +1,11 @@
 ---
+const formSpreeID = import.meta.env.PUBLIC_FORMSPREE_ID
 ---
-<section id="contact" class="bg-white text-gray-800 py-16 px-4 inset-shadow-amber-200 shadow-2xl" x-data="contactForm()">
+<section id="contact"
+         class="bg-white text-gray-800 py-16 px-4 inset-shadow-amber-200 shadow-2xl"
+         x-data="contactForm()"
+         data-formspree-id={formSpreeID}>
+
     <div class="max-w-4xl mx-auto text-center">
         <h2 class="text-3xl md:text-5xl mb-6 ">Parlons de votre projet</h2>
 
@@ -42,7 +47,7 @@
         <!-- Button for sending -->
          <div class="text-center pt-6">
             <button type="submit" :disabled="cooldown"
-                    :class="cooldown ? 'opcaity-50 cursor-not-allowed' : ''"
+                    :class="cooldown ? 'opacity-50 cursor-not-allowed' : ''"
                     class="bg-amber-600 text-xl font-semibold px-10 py-4 rounded-2xl text-white ring-2 ring-amber-400 ring-offset-4
                            transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-105
                            active:translate-y-0 active:scale-95 active:ring-offset-2"        
@@ -61,7 +66,9 @@
 </section>
 
 <script>
+  
   function contactForm() {
+    const formSpreeID = (document.querySelector('#contact') as HTMLElement)?.dataset.formSpreeID;
     return {
       name: '',
       email: '',
@@ -100,7 +107,7 @@
         setTimeout(() => this.cooldown = false, 15000);
 
         // Simule l’envoi avec Formspree ou autre endpoint
-        fetch("https://formspree.io/f/yourFormID", {
+        fetch(`https://formspree.io/f/${formSpreeID}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
