@@ -15,24 +15,38 @@ const formSpreeID = import.meta.env.PUBLIC_FORMSPREE_ID
           <!-- Nom  -->
           <div>
             <label for="name" class="block mb-2 font-semibold">Nom</label>
-            <input type="text" id="name" name="name" required
-                class="w-full px-4 py-3 rounded-xl border border-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition"
-            >
+            <input
+              type="text" 
+              id="name" 
+              name="name" 
+              x-model="name"
+              required
+              class="w-full px-4 py-3 rounded-xl border border-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition"
+            />
           </div>
 
           <!-- Email -->
           <div>
             <label for="email" class="block mb-2 font-semibold">Addresse mail</label>
-            <input type="text" id="email" name="email" required
-                class="w-full px-4 py-3 rounded-xl border border-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition"
-            >
+            <input
+              type="text"
+              id="email"
+              name="email"
+              x-model="email"
+              required
+              class="w-full px-4 py-3 rounded-xl border border-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition"
+            />
           </div>
         
         <!-- Message -->
         <div>
             <label for="message" class="block mb-2 font-semibold">Votre message</label>
-            <textarea id="message" name="message" required
-                class="w-full px-4 py-3 rounded-xl border border-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition"
+            <textarea
+              id="message"
+              name="message"
+              x-model="message"
+              required
+              class="w-full px-4 py-3 rounded-xl border border-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition"
             ></textarea>
         </div>
 
@@ -46,13 +60,15 @@ const formSpreeID = import.meta.env.PUBLIC_FORMSPREE_ID
 
         <!-- Button for sending -->
          <div class="text-center pt-6">
-            <button type="submit" :disabled="cooldown"
-                    :class="cooldown ? 'opacity-50 cursor-not-allowed' : ''"
-                    class="bg-amber-600 text-xl font-semibold px-10 py-4 rounded-2xl text-white ring-2 ring-amber-400 ring-offset-4
+            <button
+               type="submit" 
+               :disabled="cooldown"
+               :class="cooldown ? 'opacity-50 cursor-not-allowed' : ''"
+                class="bg-amber-600 text-xl font-semibold px-10 py-4 rounded-2xl text-white ring-2 ring-amber-400 ring-offset-4
                            transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-105
                            active:translate-y-0 active:scale-95 active:ring-offset-2"        
             >
-                Envoyer
+              Envoyer
             </button>
          </div>
 
@@ -60,15 +76,14 @@ const formSpreeID = import.meta.env.PUBLIC_FORMSPREE_ID
          <div class="text-center w-1/2 mx-auto bg-yellow-200 rounded-2xl py-4 px-6">
             <a href="/contact">Besoin de + précisions ? c'est par ici &#128073;</a>
          </div>
-        
         </form>
     </div>
 </section>
 
-<script>
-  
-  function contactForm() {
-    const formSpreeID = (document.querySelector('#contact') as HTMLElement)?.dataset.formSpreeID;
+<script is:inline>
+  window.contactForm = function() {
+    const formSpreeID = document.querySelector('#contact')?.dataset.formspreeId || '';
+    console.log(formSpreeID);
     return {
       name: '',
       email: '',
