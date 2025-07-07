@@ -6,7 +6,7 @@ import '../styles/global.css'
 
 <BaseLayout>
   <!-- Hero Ravalement -->
-  <section class="bg-gradient-to-br from-[#e0894f] to-[#e45f22] text-white py-24 px-6 md:px-12 relative rounded-lg overflow-hidden">
+  <section class="bg-gradient-to-br from-[#e0894f] to-[#e45f22] text-white py-24 px-6 md:px-12 relative overflow-hidden">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
       <!-- Left -->
       <div class="md:w-1/2 space-y-6 text-center md:text-left">
@@ -20,13 +20,13 @@ import '../styles/global.css'
       </div>
 
       <!-- Right -->
-      <div class="md:w-1/2 relative flex justify-center items-center">
+      <div class="relative md:w-1/2 flex flex-col justify-center items-center">
         <img src="/images/traitement_decollement_enduit-avant.jpg"
              alt="Ravalement de façade en cours"
-             class="w-60 md:w-90 rounded-xl shadow-xl rotate-[3deg] absolute mb-2 top-0 left-0 z-10 border-4 border-white">
+             class="w-90 md:w-120 h-auto rounded-xl shadow-xl rotate-[1deg] border-4 border-white">
         <img src="/images/traitement_decollement_enduit-apres.jpg"
              alt="Façade rénovée après intervention"
-             class="h-60 md:h-90 mt-12 rounded-2xl shadow-xl rotate-[-4deg] relative z-0 border-4 border-white">
+             class="h-60 w-auto md:h-90 mt-12 rounded-2xl shadow-xl rotate-[-2deg] object-center z-0 border-4 border-white -top-5 ">
       </div>
     </div>
   </section>
@@ -34,8 +34,12 @@ import '../styles/global.css'
   <!-- Pourquoi ravaler ? -->
   <section class="py-20 px-6 md:px-12 bg-white text-[#003049]">
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-12 items-center">
-      <div class="w-full md:w-1/2 space-y-6">
+      <div class="w-full md:w-1/2 space-y-8">
         <h2 class="text-3xl md:text-4xl font-bold text-center">Pourquoi ravaler votre façade ?</h2>
+        <!-- colonne image -->
+      <div class="w-full md:w-1/2 mb-20">
+        <img src="/images/ravalement_facade-scaled.jpg" alt="nettoyage haute pression façade" class="rounded-2xl shadow-xl">
+      </div>
         <div class="flex flex-col gap-6">
           <div class="p-6 rounded-xl shadow hover:shadow-lg transition bg-[#f8f9fa]">
             <h3 class="text-xl text-center font-semibold mb-2">🧼 Protection & entretien</h3>
@@ -52,10 +56,7 @@ import '../styles/global.css'
         </div>
       </div>
 
-      <!-- colonne image -->
-      <div class="w-full md:w-1/2">
-        <img src="/images/nettoyage-facade.jpg" alt="nettoyage haute pression façade" class="rounded-2xl shadow-xl">
-      </div>
+      
     </div>
   </section>
 
@@ -161,7 +162,7 @@ import '../styles/global.css'
 
 
   <!-- Contact -->
-  <section id="contact" class="py-20 px-6 md:px-12 bg-[#003049] text-white rounded-2xl">
+  <section id="contact" class="py-20 px-6 md:px-12 bg-[#003049] text-white">
     <div class="max-w-4xl mx-auto rounded-2xl">
       <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center">Un projet de ravalement ?</h2>
       <p class="text-center mb-10">Contactez-nous pour un devis gratuit sous 24h, sans engagement.</p>

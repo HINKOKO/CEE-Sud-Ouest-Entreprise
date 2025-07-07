@@ -12,7 +12,7 @@
 
       <!-- m² isolés -->
       <div 
-        x-data="counter(0, 2000, 40, 30)" 
+        x-data="counter(0, 20000, 500, 5)" 
         x-intersect:enter="startCount()" 
         x-intersect:leave="resetCount()"
       >
@@ -24,7 +24,7 @@
 
       <!-- chantiers réalisés -->
       <div 
-        x-data="counter(0, 67, 2, 30)" 
+        x-data="counter(0, 27, 2, 20)" 
         x-intersect:enter="startCount()" 
         x-intersect:leave="resetCount()"
       >
@@ -42,10 +42,10 @@
       x-data="{
         activeSlide: 0,
         slides: [
-          { src: '/images/chantier-1.jpeg', caption: 'ITE sur maison individuelle à Dax' },
-          { src: '/images/chantier-2.jpeg', caption: 'ITE sur maison individuelle Saint-Jean-de-Luz' },
-          { src: '/images/chantier-3.jpeg', caption: 'ITE sur maison individuelle à Grozny' },
-          { src: '/images/chantier-4.webp', caption: 'ITE sur maison individuelle à Acapulco' }
+          { src: '/images/chantier-3.jpeg', caption: 'ITE sur maison individuelle face à la plage Marinella' },
+          { src: '/images/ravalement-facade-sorebat.jpg', caption: 'Ravalement de façade sur maison traditionelle' },
+          { src: '/images/renovation-facade_biarritz.jpg', caption: 'ITE sur maison individuelle à Grozny' },
+          { src: '/images/isolation_hlm_cuyes.jpg', caption: 'ITE et ravalement - HLM de Cuyes' }
         ],
         goToSlide(index) {
             this.activeSlide = index;
@@ -60,7 +60,7 @@
       <div 
         class="flex overflow-x-auto no-scrollbar snap-x snap-mandatory space-x-4 scroll-smooth"
         x-ref="slider"
-        @scroll.debounce.100ms="activeSlide = Math.round($refs.slider.scrollLeft / $refs.slider.clientWidth)"
+        @scroll.debounce.15ms="activeSlide = Math.round($refs.slider.scrollLeft / $refs.slider.clientWidth)"
   >
     <template x-for="(slide, index) in slides" :key="slide.src">
       <div class="relative min-w-full snap-start md:h-[400px]">

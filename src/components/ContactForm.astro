@@ -2,11 +2,11 @@
 const formSpreeID = import.meta.env.PUBLIC_FORMSPREE_ID
 ---
 <section id="contact"
-         class="bg-white text-gray-800 py-16 px-4 inset-shadow-amber-200 shadow-2xl"
+         class="bg-white text-gray-800 py-16 px-4 inset-shadow-amber-200 shadow-2xl rounded-lg"
          x-data="contactForm()"
          data-formspree-id={formSpreeID}>
 
-    <div class="max-w-4xl mx-auto text-center">
+    <div class="max-w-4xl mx-auto text-center px-2 md:px-8">
         <h2 class="text-3xl md:text-5xl mb-6 ">Parlons de votre projet</h2>
 
         <form @submit.prevent="submitForm" class="space-y-6 text-left">
@@ -74,7 +74,7 @@ const formSpreeID = import.meta.env.PUBLIC_FORMSPREE_ID
         </form>
       </div>
       <!-- Lien vers page contact  -->
-      <div class="mt-6 text-center text-amber-100 font-lg w-2/3 mx-auto bg-[#4648ae] rounded-2xl py-4 px-6 ring-2 ring-offset-2">
+      <div class="mt-6 text-center text-amber-100 font-lg w-2/3 md:w-2/5 mx-auto bg-[#4648ae] rounded-2xl py-4 px-6 ring-2 ring-offset-2">
         <a href="/contact">Besoin de renseigner d'avantage d'informations? c'est par ici &#128073;</a>
       </div>
 </section>
