@@ -1,5 +1,5 @@
 ---
-const formSpreeID = import.meta.env.PUBLIC_FORMSPREE_ID
+const { formSpreeID } = Astro.props;
 ---
 <section id="contact"
          class="bg-white text-gray-800 py-16 px-4 inset-shadow-amber-200 shadow-2xl rounded-lg"
@@ -29,7 +29,7 @@ const formSpreeID = import.meta.env.PUBLIC_FORMSPREE_ID
           <div>
             <label for="email" class="block mb-2 font-semibold">Addresse mail</label>
             <input
-              type="text"
+              type="email"
               id="email"
               name="email"
               x-model="email"
@@ -42,6 +42,7 @@ const formSpreeID = import.meta.env.PUBLIC_FORMSPREE_ID
         <div>
             <label for="message" class="block mb-2 font-semibold">Votre message</label>
             <textarea
+              maxlength="1000"
               id="message"
               name="message"
               x-model="message"
@@ -52,10 +53,10 @@ const formSpreeID = import.meta.env.PUBLIC_FORMSPREE_ID
 
 
         <template x-if="error">
-          <p class="text-red-500 font-semibold text-center" x-text="error"></p>
+          <p class="text-red-500 font-semibold text-center" x-text="error" aria-live="polite"></p>
         </template>
         <template x-if="success">
-          <p class="text-green-600 font-semibold text-center">Message envoyé avec succès ! Merci 🙏</p>
+          <p class="text-green-600 font-semibold text-center" aria-live="polite">Message envoyé avec succès ! Merci 🙏</p>
         </template>
 
         <!-- Button for sending -->
@@ -82,7 +83,6 @@ const formSpreeID = import.meta.env.PUBLIC_FORMSPREE_ID
 <script is:inline>
   window.contactForm = function() {
     const formSpreeID = document.querySelector('#contact')?.dataset.formspreeId || '';
-    console.log(formSpreeID);
     return {
       name: '',
       email: '',
@@ -95,6 +95,11 @@ const formSpreeID = import.meta.env.PUBLIC_FORMSPREE_ID
       submitForm() {
         this.error = ''
         this.success = false
+
+        if (this.message.length > 1000) {
+          this.error = "Message un peu trop long, merci de respecter 1000 caractères maximum &#128516;";
+          return;
+        }
 
         // Anti-bot: honeypot
         if (this.honeypot) {

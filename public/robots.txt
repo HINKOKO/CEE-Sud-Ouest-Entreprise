@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://cee-sud-ouest.fr/sitemap-index.xml

@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const title = "Mentions légales – CEE Sud Ouest - ITE Côte Basque"
+const description = "Mentions légales du site de CEE Sud Ouest, entreprise spécialisée en isolation thermique extérieure sur la Côte Basque."
+---
+
+<BaseLayout {title} {description}>
+  <section class="bg-gray-50 min-h-screen py-12 px-4 sm:px-6 lg:px-8 text-gray-800 mt-16">
+    <div class="max-w-3xl mx-auto space-y-6">
+      <h1 class="text-3xl sm:text-4xl font-bold text-center mb-10">Mentions Légales</h1>
+
+      <div>
+        <h2 class="text-xl font-semibold mb-2">Éditeur du site</h2>
+        <p>
+          Raison sociale : CEE Sud Ouest<br />
+          Forme juridique : SAS <br />
+          Siège social : Centre International d'Affaires - 24 Boulevard Marcel Dassault 64200 BIARRITZ<br />
+          SIRET : 818 146 334 00011<br />
+          RCS : BIARRITZ<br />
+          Responsable de la publication : PINAQUY Bernard
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold mb-2">Hébergement</h2>
+        <p>
+          Hébergeur : OVH <br />
+          Adresse : 2 rue Kellermann, 59100 ROUBAIX<br />
+          Téléphone : 09 72 10 10 07
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold mb-2">Propriété intellectuelle</h2>
+        <p>
+          Le contenu du site (textes, images, graphismes, logo) est protégé par le droit d’auteur.
+          Toute reproduction ou représentation est interdite sans l’autorisation écrite préalable.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold mb-2">Données personnelles</h2>
+        <p>
+          Aucune donnée personnelle n’est collectée à votre insu. En utilisant le formulaire de contact,
+          vous consentez à ce que les informations saisies soient utilisées pour vous recontacter.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

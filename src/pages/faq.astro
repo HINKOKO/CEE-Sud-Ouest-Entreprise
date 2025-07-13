@@ -1,0 +1,76 @@
+---
+const faqs = [
+   {
+    question: "Qu’est‑ce que l’ITE ?",
+    answer:
+      "L’isolation thermique par l’extérieur (ITE) consiste à envelopper les murs d’un bâtiment d’un manteau isolant pour améliorer ses performances énergétiques."
+  },
+  {
+    question: "Quels sont les avantages de l’ITE ?",
+    answer:
+      "Réduction des pertes de chaleur, économies d’énergie, amélioration du confort et valorisation du bien."
+  },
+  {
+    question: "Est‑ce que l’ITE donne droit à des aides ?",
+    answer:
+      "Oui, selon votre situation, vous pouvez bénéficier de MaPrimeRénov’, de l’éco‑PTZ ou encore d’un taux de TVA réduit."
+  },
+  {
+    question: "Combien coûte une ITE au m² ?",
+    answer:
+      "Le prix dépend des matériaux choisis, de la surface et de la complexité du chantier. En moyenne, il faut compter entre 120 € et 180 €/m²."
+  },
+  {
+    question: "Combien de temps dure un chantier d’ITE ?",
+    answer:
+      "Cela dépend de la taille du bâtiment. En général, un chantier résidentiel prend entre 1 et 3 semaines."
+  }
+];
+
+// Génération automatique du JSON‑LD Schema.org pour les rich snippets Google
+const jsonld = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer
+    }
+  }))
+};
+
+const title = ">FAQ - Isolation Thermique Extérieure (ITE)"
+const description = "Uqestion fréquentes sur l'isolation thermique extérieure (ITE)"
+
+import BaseLayout from "../layouts/BaseLayout.astro"
+---
+<BaseLayout title={title} {description} {jsonld}>
+    <section class="bg-gray-50 min-h-screen py-12 px-4 sm:px-6 lg:px-8 text-gray-800 mt-16">
+        <h1 class="text-3xl sm:text-4xl font-bold text-center mb-10">
+            FAQ Isolation Thermique Extérieure (ITE)
+        </h1>
+
+        <div class="max-w-3xl mx-auto space-y-4">
+            {faqs.map(faq => (
+                <details class="group bg-white shadow-md rounded-2xl p-6 open:shadow-lg transition">
+                    <summary class="hover:cursor-pointer flex justify-between items-center font-medium text-lg">
+                        <span>{faq.question}</span>
+                         <svg
+                            class="w-5 h-5 ml-2 transition-transform open:rotate-180"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            >
+                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                         d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </summary>
+                    <p class="mt-4 leading-relaxed text-base">{faq.answer}</p>
+                </details>
+            ))}
+        </div>
+    </section>
+</BaseLayout>

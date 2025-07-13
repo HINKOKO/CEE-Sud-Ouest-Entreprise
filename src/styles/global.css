@@ -134,8 +134,8 @@ body {
 .custom-shape-divider-top svg {
     position: relative;
     display: block;
-    width: calc(100% + 1.3px);
-    height: 90px;
+    width: calc(100% + 7px);
+    height: 135px;
 }
 
 @media (min-width: 768px) {
