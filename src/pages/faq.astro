@@ -1,27 +1,32 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro"
+
+const title = "FAQ - Isolation Thermique Extérieure (ITE)"
+const description = "Questions fréquentes sur l'isolation thermique extérieure (ITE)"
+
 const faqs = [
    {
-    question: "Qu’est‑ce que l’ITE ?",
+    question: "Qu'est ce que l'ITE?",
     answer:
-      "L’isolation thermique par l’extérieur (ITE) consiste à envelopper les murs d’un bâtiment d’un manteau isolant pour améliorer ses performances énergétiques."
+      "L'isolation thermique par l'extérieur (ITE) consiste à envelopper les murs d'un bâtiment d'un manteau isolant pour améliorer ses performances énergétiques."
   },
   {
-    question: "Quels sont les avantages de l’ITE ?",
+    question: "Quels sont les avantages de l'ITE?",
     answer:
-      "Réduction des pertes de chaleur, économies d’énergie, amélioration du confort et valorisation du bien."
+      "Réduction des pertes de chaleur, économies d'énergie, amélioration du confort et valorisation du bien."
   },
   {
-    question: "Est‑ce que l’ITE donne droit à des aides ?",
+    question: "Est ce que l'ITE donne droit à des aides?",
     answer:
-      "Oui, selon votre situation, vous pouvez bénéficier de MaPrimeRénov’, de l’éco‑PTZ ou encore d’un taux de TVA réduit."
+      "Oui, selon votre situation, vous pouvez bénéficier de MaPrimeRénov', de l'écoprêt PTZ ou encore d'un taux de TVA réduit."
   },
   {
-    question: "Combien coûte une ITE au m² ?",
+    question: "Combien coûte une ITE au mètre carré?",
     answer:
-      "Le prix dépend des matériaux choisis, de la surface et de la complexité du chantier. En moyenne, il faut compter entre 120 € et 180 €/m²."
+      "Le prix dépend des matériaux choisis, de la surface et de la complexité du chantier. En moyenne, il faut compter entre 120€ et 180€ du mètre carré."
   },
   {
-    question: "Combien de temps dure un chantier d’ITE ?",
+    question: "Combien de temps dure un chantier d'ITE?",
     answer:
       "Cela dépend de la taille du bâtiment. En général, un chantier résidentiel prend entre 1 et 3 semaines."
   }
@@ -41,12 +46,14 @@ const jsonld = {
   }))
 };
 
-const title = "FAQ - Isolation Thermique Extérieure (ITE)"
-const description = "Uqestion fréquentes sur l'isolation thermique extérieure (ITE)"
 
-import BaseLayout from "../layouts/BaseLayout.astro"
 ---
-<BaseLayout title={title} {description} {jsonld}>
+<BaseLayout title={title} {description}>
+    <!--inject via head slot-->
+    <Fragment slot="head">
+      <script type="application/ld+json" set:html={JSON.stringify(jsonld, null, 2)} />
+    </Fragment>
+
     <section class="bg-gray-50 min-h-screen py-12 px-4 sm:px-6 lg:px-8 text-gray-800 mt-16">
         <h1 class="text-3xl sm:text-4xl font-bold text-center mb-10">
             FAQ Isolation Thermique Extérieure (ITE)
