@@ -17,13 +17,14 @@ import '../styles/global.css'
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content={description} />
         <link rel="canonical" href="https://cee-sud-ouest.fr" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
         <meta name="robots" content="index, follow" />
         <meta property="og:description" content={description} />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="fr_FR" />
         <meta name="twitter:card" content="summary_large_image" />
-        <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
-        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js" is:inline></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" is:inline></script>
         <slot name="head" />
         {jsonld && (
             <script type="application/ld+json" is:raw>
@@ -34,7 +35,7 @@ import '../styles/global.css'
     <body>
         <Header />
         <main>
-            <slot />
+           <slot />
         </main>
         <Footer />
         
