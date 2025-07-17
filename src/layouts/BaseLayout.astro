@@ -4,6 +4,9 @@ const {
     description = "Spécialiste de l'isolation thermique extérieure - ITE - sur la côte Basque : maisons, immeubles, ravalement de façade et plus.",
     jsonld=null
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import '../styles/global.css'
@@ -16,8 +19,13 @@ import '../styles/global.css'
         <title>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content={description} />
-        <link rel="canonical" href="https://cee-sud-ouest.fr" />
-        <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32"  />
+        <link rel="canonical" href={canonicalURL.toString()} />
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="MyWebSite" />
+        <link rel="manifest" href="/site.webmanifest" />
         <meta name="robots" content="index, follow" />
         <meta property="og:description" content={description} />
         <meta property="og:type" content="website" />
