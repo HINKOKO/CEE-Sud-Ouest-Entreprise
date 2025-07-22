@@ -1,5 +1,4 @@
 ---
-// Pas besoin d'import ici si tu restes simple
 ---
 <header
   x-data="{
@@ -70,7 +69,7 @@
     <nav class="hidden md:flex justify-center bg-[#002837] py-2 text-base uppercase tracking-wide space-x-10">
       <a href="/" class="nav-links">Accueil</a>
       <a href="/#services" class="nav-links">Services</a>
-      <a href="/realisations" class="nav-links">Réalisations</a>
+      <a href="/realisations/" class="nav-links">Réalisations</a>
       <a href="/#contact" class="nav-links">Contact</a>
     </nav>
 
@@ -88,7 +87,7 @@
       > 
       <a href="/" @click="open = false" class="uppercase tracking-wide">Accueil</a>
       <a href="/#services" @click="open = false" class="uppercase tracking-wide">Services</a>
-      <a href="/realisations" @click="open = false" class="block uppercase tracking-wide">Réalisations</a>
+      <a href="/realisations/" @click="open = false" class="block uppercase tracking-wide">Réalisations</a>
       <a href="/#contact" @click="open = false" class="block uppercase tracking-wide">Contact</a>
       </nav>
     </div>
