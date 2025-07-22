@@ -5,7 +5,10 @@ const {
     jsonld=null
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const pathWithTSlash = Astro.url.pathname.endsWith('/') || Astro.url.pathname === '/'
+            ? Astro.url.pathname
+            : Astro.url.pathname + '/';
+const canonicalURL = new URL(pathWithTSlash, Astro.site);
 
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
