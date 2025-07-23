@@ -34,26 +34,38 @@ const realisations = [
   },
 ]
 
-// infos business 
-const business = {
-  name: "CEE Sud-Ouest",
-  streetAddress: "24 boulevard Marcel Dassault",
-  addressLocality: "Biarritz",
-  addressRegion: "Nouvelle Aquitaine",
-  postalCode: "64200",
-  addressCountry: "FR",
-  telephone: "01 23 45 67 89",
-  url: "",
-  openingHours: [
-    { day: "Monday", opens: "08:00", closes: "18:00" },
-    { day: "Tuesday", opens: "08:00", closes: "18:00" },
-    { day: "Wednesday", opens: "08:00", closes: "18:00" },
-    { day: "Thursday", opens: "08:00", closes: "18:00" },
-    { day: "Friday", opens: "08:00", closes: "18:00" },
-  ],
-};
+const jsonld = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "CEE Sud Ouest",
+    "url": "https://cee-sud-ouest.fr",
+    "priceRange": "Tarifs sur devis",
+    "telephone": "+33680506064",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "24 boulevard Marcel Dassault",
+      "addressLocality": "Biarritz",
+      "addressRegion": "Nouvelle Aquitaine",
+      "postalCode": "64200",
+      "addressCountry": "FR",
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    ]
+  };
+
+
 ---
 <BaseLayout {title} {description}>
+    <!--inject via head slot-->
+    <Fragment slot="head">
+      <script type="application/ld+json" set:html={JSON.stringify(jsonld, null, 2)} />
+    </Fragment>
     <section class="px-6 md:px-12 py-20 max-w-6xl mx-auto">
         <h1 style="font-family: ubuntu; font-weight: 700;" class="mb-16 text-center text-4xl">
           Nos réalisations ITE et ravalements de façades
@@ -149,27 +161,3 @@ const business = {
   </section>
 </BaseLayout>
 
-<!-- JSON-LD LocalBusiness -->
-<script type="application/ld+json" is:inline>
-  {JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": business.name,
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": business.streetAddress,
-      "addressLocality": business.addressLocality,
-      "addressRegion": business.addressRegion,
-      "postalCode": business.postalCode,
-      "addressCountry": business.addressCountry
-    },
-    "telephone": business.telephone,
-    "url": business.url,
-    "openingHoursSpecification": business.openingHours.map(day => ({
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": day.day,
-      "opens": day.opens,
-      "closes": day.closes
-    }))
-  })}
-</script>
