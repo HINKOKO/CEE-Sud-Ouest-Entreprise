@@ -2,156 +2,64 @@
 const { formSpreeID } = Astro.props;
 ---
 <section id="contact"
-         class="bg-white text-gray-800 py-16 px-4 inset-shadow-amber-200 shadow-2xl rounded-lg"
-         x-data="contactForm()"
-         data-formspree-id={formSpreeID}>
+    class="bg-white text-gray-800 py-16 px-4 inset-shadow-amber-200 shadow-2xl rounded-lg">
 
     <div class="max-w-4xl mx-auto text-center px-2 md:px-8">
-        <h2 class="text-3xl md:text-5xl mb-6 ">Parlons de votre projet</h2>
+        <h2 class="text-3xl md:text-5xl mb-6">Parlons de votre projet</h2>
 
-        <form @submit.prevent="submitForm" class="space-y-6 text-left">
-          <!-- HoneyPot -->
-           <input type="text" name="_gotcha" x-model="honeypot" class="hidden" />
-          <!-- Nom  -->
-          <div>
-            <label for="name" class="block mb-2 font-semibold">Nom</label>
-            <input
-              type="text" 
-              id="name" 
-              name="name" 
-              x-model="name"
-              required
-              class="w-full px-4 py-3 rounded-xl border border-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition"
-            />
-          </div>
-
-          <!-- Email -->
-          <div>
-            <label for="email" class="block mb-2 font-semibold">Addresse mail</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              x-model="email"
-              required
-              class="w-full px-4 py-3 rounded-xl border border-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition"
-            />
-          </div>
-        
-        <!-- Message -->
-        <div>
-            <label for="message" class="block mb-2 font-semibold">Votre message</label>
-            <textarea
-              maxlength="1000"
-              id="message"
-              name="message"
-              x-model="message"
-              required
-              class="w-full px-4 py-3 rounded-xl border border-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition"
-            ></textarea>
-        </div>
-
-
-        <template x-if="error">
-          <p class="text-red-500 font-semibold text-center" x-text="error" aria-live="polite"></p>
-        </template>
-        <template x-if="success">
-          <p class="text-green-600 font-semibold text-center" aria-live="polite">Message envoyé avec succès ! Merci 🙏</p>
-        </template>
-
-        <!-- Button for sending -->
-         <div class="text-center pt-6">
-            <button
-               type="submit" 
-               :disabled="cooldown"
-               :class="cooldown ? 'opacity-50 cursor-not-allowed' : ''"
-                class="bg-amber-600 text-xl font-semibold px-10 py-4 rounded-2xl text-white ring-2 ring-amber-400 ring-offset-4
-                           transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-105
-                           active:translate-y-0 active:scale-95 active:ring-offset-2"        
+        <form
+            action={`https://formspree.io/f/${formSpreeID}`}
+            method="POST"
+            class="space-y-6 text-left"
             >
-              Envoyer
-            </button>
-         </div>
+            <input type="text" name="_gotcha" class="hidden" />
+
+            <div>
+                <label for="name" class="block mb-2 font-semibold">Nom</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    class="w-full px-4 py-3 rounded-xl border border-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition"
+                />
+            </div>
+
+            <div>
+                <label for="email" class="block mb-2 font-semibold">Adresse mail</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    class="w-full px-4 py-3 rounded-xl border border-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition"
+                />
+            </div>
+
+            <div>
+                <label for="message" class="block mb-2 font-semibold">Votre message</label>
+                <textarea
+                    maxlength="1000"
+                    id="message"
+                    name="message"
+                    required
+                    class="w-full px-4 py-3 rounded-xl border border-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition"
+                ></textarea>
+            </div>
+
+            <div class="text-center pt-6">
+                <button
+                    type="submit"
+                    class="bg-amber-600 text-xl font-semibold px-10 py-4 rounded-2xl text-white ring-2 ring-amber-400 ring-offset-4 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 active:translate-y-0 active:scale-95 active:ring-offset-2"
+                >
+                    Envoyer
+                </button>
+            </div>
         </form>
-      </div>
-      <!-- Lien vers page contact  -->
-      <div class="mt-6 text-center text-amber-100 font-lg w-2/3 md:w-2/5 mx-auto bg-[#4648ae] rounded-2xl py-4 px-6 ring-2 ring-offset-2">
-        <a href="/contact">Besoin de renseigner d'avantage d'informations? c'est par ici &#128073;</a>
-      </div>
+
+        <div class="mt-6 text-center text-amber-100 font-lg w-2/3 md:w-2/5 mx-auto bg-[#4648ae] rounded-2xl py-4 px-6 ring-2 ring-offset-2">
+            <a href="/contact">Besoin de renseigner davantage d'informations ? C'est par ici &#128073;</a>
+        </div>
+    </div>
 </section>
-
-<script is:inline>
-  window.contactForm = function() {
-    const formSpreeID = document.querySelector('#contact')?.dataset.formspreeId || '';
-    return {
-      name: '',
-      email: '',
-      message: '',
-      honeypot: '',
-      success: false,
-      error: '',
-      cooldown: false,
-
-      submitForm() {
-        this.error = ''
-        this.success = false
-
-        if (this.message.length > 1000) {
-          this.error = "Message un peu trop long, merci de respecter 1000 caractères maximum &#128516;";
-          return;
-        }
-
-        // Anti-bot: honeypot
-        if (this.honeypot) {
-          this.error = "Bot détecté 😬";
-          return;
-        }
-
-        // Cooldown via localStorage (2 min)
-        const lastSent = localStorage.getItem("lastSent");
-        if (lastSent && Date.now() - lastSent < 120000) {
-          this.error = "Merci d’attendre un peu avant de renvoyer un message 🙏";
-          return;
-        }
-
-        // Email validation simple
-        const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!validEmail.test(this.email)) {
-          this.error = "Adresse e-mail invalide.";
-          return;
-        }
-
-        // Empêche spam clics
-        this.cooldown = true;
-        setTimeout(() => this.cooldown = false, 15000);
-
-        // Simule l’envoi avec Formspree ou autre endpoint
-        fetch(`https://formspree.io/f/${formSpreeID}`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: this.name,
-            email: this.email,
-            message: this.message,
-          }),
-        })
-        .then(res => {
-          if (res.ok) {
-            this.success = true;
-            localStorage.setItem("lastSent", Date.now());
-            this.name = '';
-            this.email = '';
-            this.message = '';
-          } else {
-            this.error = "Erreur lors de l'envoi. Réessayez plus tard.";
-          }
-        })
-        .catch(() => {
-          this.error = "Erreur réseau. Réessayez plus tard.";
-        });
-      }
-    }
-  }
-</script>
-
 

@@ -1,22 +1,122 @@
 ---
+import ContactForm from '../components/ContactForm.astro'
+import BaseLayout from '../layouts/BaseLayout.astro'
 import '../styles/global.css'
+const formSpreeID = import.meta.env.PUBLIC_FORMSPREE_ID
 ---
-<!DOCTYPE html>
-<html lang="fr" x-init>
-    <head>
-        <meta charset="UTF-8" />
-        <title>Audit et conseil</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="{description}" />
-        <link rel="canonical" href="https://tonsite.fr/chemin-de-la-page" />
-        <meta name="robots" content="index, follow" />
-    </head>
-    <body>
-        <section class="max-w-screen h-lvh flex flex-col space-y-20 bg-[#000000] text-white py-6 md:py-12 px-8 md:px-14" style="font-family: Ubuntu; font-weight: 600;">
-            <h1 class="text-center font-bold text-4xl md:text-7xl ">Bienvenue chez CEE Sud-Ouest</h1>
-            <p class="text-2xl text-center tracking-wider leading-relaxed">Nos fabuleuses equipes travaillent activement à la construction de cette page et de ce service ! </p>
-            <a target="_blank" href="https://www.linkedin.com/in/anthony-pizzoni-794517233/" class="w-1/2 md:max-w-6xl mx-auto text-center px-8 py-5 bg-violet-600 text-white rounded-xl font-semibold shadow-lg ring-2 ring-offset-2 ring-amber-100 hover:scale-105">Contacter le développeur</a>
-            <a href="/" class="w-1/2 max-w-6xl mx-auto text-center px-8 py-5 bg-violet-600 text-white rounded-xl font-semibold shadow-lg ring-2 ring-offset-2 ring-amber-100 hover:scale-105">Revenir à l'accueil</a>
-        </section>
-    </body>
-</html>
+
+<BaseLayout>
+  <!-- Hero Audit & Conseil -->
+  <section class="bg-gradient-to-br from-[#e0894f] to-[#e45f22] text-white py-24 px-6 md:px-12 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+      
+      <!-- Left -->
+      <div class="md:w-1/2 space-y-6 text-center md:text-left">
+        <h1 class="text-4xl md:text-6xl font-bold">Audit & Conseil</h1>
+        <p class="text-lg md:text-xl">
+          Bénéficiez d’un regard expert pour évaluer l’état de votre bâtiment, anticiper les besoins de rénovation et choisir les meilleures solutions techniques et esthétiques.
+        </p>
+        <a href="#devis-rapide" class="inline-block mt-4 px-6 py-3 bg-white text-[#1d3557] font-semibold rounded-lg shadow hover:bg-[#dceefc] transition">
+          Demandez votre audit gratuit
+        </a>
+      </div>
+
+      <!-- Right : image illustrative -->
+      <div class="relative md:w-1/2 flex justify-center items-center">
+        <img src="/images/audit-conseil-batiment.webp"
+             alt="Expert en train d’analyser une façade"
+             class="w-90 md:w-120 h-auto rounded-xl shadow-xl rotate-[1deg] border-4 border-white">
+      </div>
+    </div>
+  </section>
+
+  <!-- Pourquoi un audit-conseil ? -->
+  <section class="py-20 px-6 md:px-12 bg-white text-[#003049]">
+    <div class="max-w-6xl mx-auto space-y-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-center">Pourquoi réaliser un audit de façade ?</h2>
+      <div class="flex flex-col md:flex-row items-center gap-12">
+        
+        <!-- Left : avantages -->
+        <div class="w-full md:w-1/2 flex flex-col gap-6">
+          <div class="p-6 rounded-xl shadow hover:shadow-lg transition bg-[#f8f9fa]">
+            <h3 class="text-xl text-center font-semibold mb-2">🔍 Diagnostic précis</h3>
+            <p>Évaluer l’état réel des murs, détecter les pathologies invisibles à l’œil nu.</p>
+          </div>
+          <div class="p-6 rounded-xl shadow hover:shadow-lg transition bg-[#f8f9fa]">
+            <h3 class="text-xl text-center font-semibold mb-2">💡 Conseils personnalisés</h3>
+            <p>Identifier les solutions les plus adaptées selon vos besoins, budget et contraintes locales.</p>
+          </div>
+          <div class="p-6 rounded-xl shadow hover:shadow-lg transition bg-[#f8f9fa]">
+            <h3 class="text-xl text-center font-semibold mb-2">📈 Optimisation des coûts</h3>
+            <p>Planifier les travaux de manière efficace et éviter les réparations inutiles.</p>
+          </div>
+        </div>
+
+        <!-- Right : image comparatif -->
+        <div class="w-full md:w-1/2">
+          <img src="/images/conseil-professionnel.webp" alt="Conseiller en rénovation avec un client" class="rounded-2xl shadow-xl" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Notre démarche -->
+  <section class="py-20 px-6 md:px-12 bg-[#f1f3f5]">
+    <div class="max-w-5xl mx-auto space-y-10">
+      <h2 class="text-3xl md:text-4xl font-bold text-center text-[#1d3557]">Notre démarche en 3 étapes</h2>
+      <ol class="grid md:grid-cols-3 gap-8 text-[#003049] list-decimal list-inside">
+        <li class="flex items-start p-6 bg-white rounded-lg shadow flex-col">
+          <div class="text-3xl mb-4">📋</div>
+          <strong class="text-xl">Visite & diagnostic</strong>
+          <p>Analyse des supports, repérage des désordres (fissures, humidité, décollements).</p>
+        </li>
+        <li class="flex items-start p-6 bg-white rounded-lg shadow flex-col">
+          <div class="text-3xl mb-4">🧭</div>
+          <strong class="text-xl">Préconisations</strong>
+          <p>Rapport détaillé avec recommandations adaptées à votre projet et à vos contraintes.</p>
+        </li>
+        <li class="flex items-start p-6 bg-white rounded-lg shadow flex-col">
+          <div class="text-3xl mb-4">🤝</div>
+          <strong class="text-xl">Accompagnement</strong>
+          <p>Conseils pour choisir les matériaux, les techniques et planifier les travaux.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 px-6 md:px-12 bg-white text-[#003049]">
+    <div class="max-w-5xl mx-auto space-y-10">
+      <h2 class="text-3xl md:text-4xl font-bold text-center">FAQ Audit & Conseil</h2>
+      <div class="space-y-6">
+        <details class="bg-[#f8f9fa] rounded-lg shadow p-6 group open:shadow-lg transition">
+          <summary class="cursor-pointer font-semibold text-xl flex justify-between items-center">
+            Combien coûte un audit de façade ? 
+            <span class="text-[#1d3557] group-open:rotate-180 transition">&#9660;</span>
+          </summary>
+          <p class="mt-4 text-base leading-relaxed">
+            Nous proposons un premier audit gratuit. Un rapport plus détaillé peut être établi selon l’ampleur du projet.
+          </p>
+        </details>
+        <details class="bg-[#f8f9fa] rounded-lg shadow p-6 group open:shadow-lg transition">
+          <summary class="cursor-pointer font-semibold text-xl flex justify-between items-center">
+            Est-ce obligatoire avant des travaux ? 
+            <span class="text-[#1d3557] group-open:rotate-180 transition">&#9660;</span>
+          </summary>
+          <p class="mt-4 text-base leading-relaxed">
+            Ce n’est pas obligatoire mais fortement recommandé : il évite des dépenses inutiles et vous garantit des travaux durables.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="devis-rapide" class="py-10 px-6 md:px-12 bg-[#1d3557] text-white">
+    <div class="max-w-4xl mx-auto rounded-2xl">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center">Besoin d’un audit ou de conseils ?</h2>
+      <p class="text-center mb-10">Contactez-nous pour un rendez-vous gratuit et sans engagement.</p>
+    </div>
+  </section>
+  <ContactForm formSpreeID={formSpreeID} />
+</BaseLayout>
